@@ -1,0 +1,65 @@
+{
+  "name": "itdbotapi",
+  "version": "0.1.0",
+  "description": "Unofficial API for итд.com (ИТД) direct messages: refresh-token auth, realtime WebSocket events, sending text, photos and files from your account",
+  "keywords": [
+    "itd",
+    "итд",
+    "messenger",
+    "direct-messages",
+    "dm",
+    "userbot",
+    "bot",
+    "websocket",
+    "api",
+    "typescript"
+  ],
+  "author": "MimJS (https://github.com/MimJS)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MimJS/ITDBotAPI.git"
+  },
+  "homepage": "https://github.com/MimJS/ITDBotAPI#readme",
+  "bugs": {
+    "url": "https://github.com/MimJS/ITDBotAPI/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && npm run build && tsc -p tsconfig.dev.json",
+    "test": "node --import tsx --test test/*.test.ts",
+    "example:cat": "tsx --env-file-if-exists=.env examples/cat-bot.ts",
+    "example:inspect": "tsx --env-file-if-exists=.env examples/inspect.ts",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/ws": "^8.5.13",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.10"
+  }
+}
